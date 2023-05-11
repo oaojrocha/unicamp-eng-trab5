@@ -1,22 +1,24 @@
 pipeline {
-    agent any
+    agent {
+        label 'windows'
+    }
 
     stages {
         stage('build') {
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean install'
             }
         }
 
         stage('test') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('deploy') {
             steps {
-                sh 'mvn deploy'
+                bat 'mvn deploy'
             }
         }
     }
